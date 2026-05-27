@@ -1,33 +1,28 @@
-pipeline{
-    agent any
-    stages{
-        stage('Checkout'){
-            steps{
-                echo 'code github se checkout hogs...'
-            }
-        }
 
-        stage('Build'){
-            steps{
-                echo 'Maven se build ho rha hai ...'
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "🧪 Building DEVELOP branch - Staging"
             }
         }
-        stage('Test'){
-            steps{
-                echo 'Tests chal rha hai..'
+        stage('Build') {
+            steps {
+                echo "🔨 Running staging build with test coverage"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "🟢 Deploying to STAGING server"
             }
         }
     }
-
-    post{
-        always{
-            echo 'pipelines complete hone wali hai..'
-        }
-        success{
-            echo 'Build successful hai ...'
-        }
-        failure{
-            echo 'Build failed..'
+    
+    post {
+        success {
+            echo "✅ Staging deployment successful"
         }
     }
 }
