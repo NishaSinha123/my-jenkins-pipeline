@@ -1,33 +1,29 @@
-pipeline{
+
+pipeline {
     agent any
-    stages{
-        stage('Checkout'){
-            steps{
-                echo 'code github se checkout hogs...'
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "🔧 Building FEATURE branch - Login feature"
             }
         }
-
-        stage('Build'){
-            steps{
-                echo 'Maven se build ho rha hai ...'
+        stage('Build') {
+            steps {
+                echo "🔨 Running feature branch build"
             }
         }
-        stage('Test'){
-            steps{
-                echo 'Tests chal rha hai..'
+        stage('Test') {
+            steps {
+                echo "🧪 Running unit tests for login feature"
             }
         }
+        // No deploy stage for feature branches
     }
-
-    post{
-        always{
-            echo 'pipelines complete hone wali hai..'
-        }
-        success{
-            echo 'Build successful hai ...'
-        }
-        failure{
-            echo 'Build failed..'
+    
+    post {
+        success {
+            echo "✅ Feature branch build passed"
         }
     }
 }
